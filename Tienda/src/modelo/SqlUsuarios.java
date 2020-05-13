@@ -27,13 +27,13 @@ public class SqlUsuarios extends Conexion {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.toString());
+            JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion
             return false;
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.toString());
+                JOptionPane.showMessageDialog(null, e.toString());//
             }
         }
     }
@@ -50,26 +50,26 @@ public class SqlUsuarios extends Conexion {
             ps.setString(1, usr.getUsuario());
             rs = ps.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next()) {//Inicia una condicion
                 if (usr.getPassword().equals(rs.getString(3))) {
                     usr.setId(rs.getInt(1));
                     usr.setNombre(rs.getString(4));
                     usr.setIdTipo(rs.getInt(5));
                     return true;
-                } else {
-                    return false;
+                } else {//de lo contrario
+                    return false;// si es falsa procedera a hacer la siguiente condicion
                 }
             }
 
             return false;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.toString());
+            JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion
             return false;
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.toString());
+                JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion
             }
         }
     }
