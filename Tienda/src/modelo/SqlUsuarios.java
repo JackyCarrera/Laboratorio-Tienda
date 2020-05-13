@@ -8,15 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
-public class SqlUsuarios extends Conexion {
+public class SqlUsuarios extends Conexion { 
 
-    public boolean registrar(Usuarios usr) {
+    public boolean registrar(Usuarios usr) { 
         PreparedStatement ps = null;
-        Connection con = getConexion();
+        Connection con = getConexion(); 
 
-        String sql = "INSERT INTO usuarios (usuario, password, nombre, email, idTipo) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO usuarios (usuario, password, nombre, email, idTipo) VALUES(?,?,?,?,?)"; //se hace mantenimiento atraves de insert
 
-        try {
+        
+        try { 
             ps = con.prepareStatement(sql);
             ps.setString(1, usr.getUsuario());
             ps.setString(2, usr.getPassword());
@@ -37,12 +38,12 @@ public class SqlUsuarios extends Conexion {
         }
     }
 
-    public boolean login(Usuarios usr) {
+    public boolean login(Usuarios usr) {//conexion con la ventana de login 
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT id, usuario, password, nombre, idTipo FROM usuarios WHERE usuario = ? LIMIT 1";
+        String sql = "SELECT id, usuario, password, nombre, idTipo FROM usuarios WHERE usuario = ? LIMIT 1";//LIMIT es para limitar el número de registros que devuelve una consulta
 
         try {
             ps = con.prepareStatement(sql);
@@ -73,7 +74,7 @@ public class SqlUsuarios extends Conexion {
         }
     }
 
-    public int existeUsuario(String usuario) {
+    public int existeUsuario(String usuario) {//para verificar si existe el usuario
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
