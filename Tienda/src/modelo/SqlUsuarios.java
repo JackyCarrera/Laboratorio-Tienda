@@ -10,16 +10,16 @@ import javax.swing.JOptionPane;
 
 public class SqlUsuarios extends Conexion { 
 
-    public boolean registrar(Usuarios usr) { 
+    public boolean registrar(Usuarios usr) { //Se esta heredando la conexion 
         PreparedStatement ps = null;
         Connection con = getConexion(); 
-
+//Se hace mantenimiento a través del insert
         String sql = "INSERT INTO usuarios (usuario, password, nombre, email, idTipo) VALUES(?,?,?,?,?)"; //se hace mantenimiento atraves de insert
 
         
-        try { 
+        try { // El "Try" y el "Catch" Capturan errores 
             ps = con.prepareStatement(sql);
-            ps.setString(1, usr.getUsuario());
+            ps.setString(1, usr.getUsuario());//Asigna cada uno en el mantenimiento
             ps.setString(2, usr.getPassword());
             ps.setString(3, usr.getNombre());
             ps.setString(4, usr.getEmail());
