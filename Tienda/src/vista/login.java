@@ -121,14 +121,14 @@ public class login extends javax.swing.JFrame {
                 this.dispose();
                 
                 menu frmMenu = new menu(mod);
-                frmMenu.setVisible(true);
+                frmMenu.setVisible(true);//VERDADERO
                 
             } else {
-                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");//REGISTRA SI LOS DATOS SON CORRECTOS O INCORRECTOS
                 limpiar();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");
+            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");//INGRESAR DATOS OBLIGATORIAMENTE
         }
 
     }//GEN-LAST:event_btnEntrarActionPerformed
