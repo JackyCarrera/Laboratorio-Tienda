@@ -116,7 +116,7 @@ public class login extends javax.swing.JFrame {
             mod.setUsuario(txtUsuario.getText());
             mod.setPassword(nuevoPass);
             
-            if (modSql.login(mod)) {
+            if (modSql.login(mod)) {//LOGIN
                 Inicio.frmLog = null;
                 this.dispose();
                 
