@@ -10,16 +10,16 @@ import javax.swing.JOptionPane;
 
 public class SqlUsuarios extends Conexion { 
 
-    public boolean registrar(Usuarios usr) { //Se esta heredando la conexion 
-        PreparedStatement ps = null;
-        Connection con = getConexion(); 
-//Se hace mantenimiento a través del insert
-        String sql = "INSERT INTO usuarios (usuario, password, nombre, email, idTipo) VALUES(?,?,?,?,?)"; //se hace mantenimiento atraves de insert
+    public boolean registrar(Usuarios usr) { //Se esta heredando la conexion -Jacky
+        PreparedStatement ps = null; //Prepara la sentencia-Jacky
+        Connection con = getConexion(); //Procede a conectar la conexion con MySQl-Jacky
+//Se hace mantenimiento a través del insert-Jacky
+        String sql = "INSERT INTO usuarios (usuario, password, nombre, email, idTipo) VALUES(?,?,?,?,?)"; //se hace mantenimiento atraves de insert - LUIS
 
         
-        try { // El "Try" y el "Catch" Capturan errores 
+        try { // El "Try" y el "Catch" Capturan errores -Jacky
             ps = con.prepareStatement(sql);
-            ps.setString(1, usr.getUsuario());//Asigna cada uno en el mantenimiento
+            ps.setString(1, usr.getUsuario());//Asigna cada uno en el mantenimiento-Jacky
             ps.setString(2, usr.getPassword());
             ps.setString(3, usr.getNombre());
             ps.setString(4, usr.getEmail());
@@ -27,58 +27,58 @@ public class SqlUsuarios extends Conexion {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion
+            JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion -LUIS
             return false;
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.toString());//
+                JOptionPane.showMessageDialog(null, e.toString());
             }
         }
     }
 
     public boolean login(Usuarios usr) {//conexion con la ventana de login 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
-        String sql = "SELECT id, usuario, password, nombre, idTipo FROM usuarios WHERE usuario = ? LIMIT 1";//LIMIT es para limitar el número de registros que devuelve una consulta
+        PreparedStatement ps = null;//Prepara la sentencia-Jacky
+        ResultSet rs = null;//Proporciona el acceso a los datos de la condicion -Jacky
+        Connection con = getConexion();//Procede a conectar la conexion con MySQl-Jacky
+//Mantenimiento a traves del Select -Jacky
+        String sql = "SELECT id, usuario, password, nombre, idTipo FROM usuarios WHERE usuario = ? LIMIT 1";//LIMIT es para limitar el número de registros que devuelve una consulta - LUIS
 
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, usr.getUsuario());
             rs = ps.executeQuery();
 
-            if (rs.next()) {//Inicia una condicion
+            if (rs.next()) {//Inicia una condicion - LUIS
                 if (usr.getPassword().equals(rs.getString(3))) {
                     usr.setId(rs.getInt(1));
                     usr.setNombre(rs.getString(4));
                     usr.setIdTipo(rs.getInt(5));
                     return true;
-                } else {//de lo contrario
-                    return false;// si es falsa procedera a hacer la siguiente condicion
+                } else {//de lo contrario - LUIS
+                    return false;// si es falsa procedera a hacer la siguiente condicion - LUIS
                 }
             }
 
             return false;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion
+            JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion - Luis
             return false;
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion
+                JOptionPane.showMessageDialog(null, e.toString());// trajo informacion de la clase conexion - LUIS
             }
         }
     }
 
-    public int existeUsuario(String usuario) {//para verificar si existe el usuario
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
+    public int existeUsuario(String usuario) {//para verificar si existe el usuario -LUIS
+        PreparedStatement ps = null;//Prepara la sentencia-Jacky
+        ResultSet rs = null;//Proporciona el acceso a los datos de la condicion -Jacky
+        Connection con = getConexion();//Procede a conectar la conexion con MySQl-Jacky
+//Mantenimiento a traves del Select -Jacky
         String sql = "SELECT count(id) FROM usuarios WHERE usuario = ?";
 
         try {
@@ -107,9 +107,9 @@ public class SqlUsuarios extends Conexion {
     public boolean esEmail(String correo) {
 
         // Patrón para validar el email
-        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");//crea un patron a partir de la expresion regular pasada como parametro al metodo - LUIS
 
-        Matcher mather = pattern.matcher(correo);
+        Matcher mather = pattern.matcher(correo);//Verifica una secuencia dada de tokens - LUIS
 
         return mather.find();
 
