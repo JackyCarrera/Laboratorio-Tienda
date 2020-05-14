@@ -10,16 +10,16 @@ import javax.swing.JOptionPane;
 
 public class SqlUsuarios extends Conexion { 
 
-    public boolean registrar(Usuarios usr) { //Se esta heredando la conexion 
-        PreparedStatement ps = null;
-        Connection con = getConexion(); 
-//Se hace mantenimiento a través del insert
+    public boolean registrar(Usuarios usr) { //Se esta heredando la conexion -Jacky
+        PreparedStatement ps = null; //Prepara la sentencia-Jacky
+        Connection con = getConexion(); //Procede a conectar la conexion con MySQl-Jacky
+//Se hace mantenimiento a través del insert-Jacky
         String sql = "INSERT INTO usuarios (usuario, password, nombre, email, idTipo) VALUES(?,?,?,?,?)"; //se hace mantenimiento atraves de insert
 
         
-        try { // El "Try" y el "Catch" Capturan errores 
+        try { // El "Try" y el "Catch" Capturan errores -Jacky
             ps = con.prepareStatement(sql);
-            ps.setString(1, usr.getUsuario());//Asigna cada uno en el mantenimiento
+            ps.setString(1, usr.getUsuario());//Asigna cada uno en el mantenimiento-Jacky
             ps.setString(2, usr.getPassword());
             ps.setString(3, usr.getNombre());
             ps.setString(4, usr.getEmail());
@@ -39,10 +39,10 @@ public class SqlUsuarios extends Conexion {
     }
 
     public boolean login(Usuarios usr) {//conexion con la ventana de login 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
+        PreparedStatement ps = null;//Prepara la sentencia-Jacky
+        ResultSet rs = null;//Proporciona el acceso a los datos de la condicion -Jacky
+        Connection con = getConexion();//Procede a conectar la conexion con MySQl-Jacky
+//Mantenimiento a traves del Select -Jacky
         String sql = "SELECT id, usuario, password, nombre, idTipo FROM usuarios WHERE usuario = ? LIMIT 1";//LIMIT es para limitar el número de registros que devuelve una consulta
 
         try {
@@ -75,10 +75,10 @@ public class SqlUsuarios extends Conexion {
     }
 
     public int existeUsuario(String usuario) {//para verificar si existe el usuario
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
+        PreparedStatement ps = null;//Prepara la sentencia-Jacky
+        ResultSet rs = null;//Proporciona el acceso a los datos de la condicion -Jacky
+        Connection con = getConexion();//Procede a conectar la conexion con MySQl-Jacky
+//Mantenimiento a traves del Select -jacky
         String sql = "SELECT count(id) FROM usuarios WHERE usuario = ?";
 
         try {
