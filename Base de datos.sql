@@ -8,7 +8,7 @@ password varchar(45),
 nombre varchar(45),
 email varchar(45),
 last_sesion varchar(45),
-idTipo int(11)
+idTipo int(12)
 )Engine=InnoDB;
 
 select * from usuarios; 
